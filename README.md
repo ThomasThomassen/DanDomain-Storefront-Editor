@@ -84,12 +84,9 @@ npm run clean
 The editor includes DanDomain's complete configuration:
 - Full HTML support with `GeneralHtmlSupport`
 - Link decorators for new tab handling
-- Image handling and styling
-- Table support with column resizing
 - Heading configuration (H2-H4)
 - Rich text formatting (bold, italic, underline)
 - Lists and indentation
-- Media embedding
 
 ## API Integration
 
