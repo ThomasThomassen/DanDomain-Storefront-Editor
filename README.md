@@ -11,9 +11,85 @@ A Chrome extension that enhances DanDomain webshops with quick edit functionalit
 - **Product links**: Hover tooltips everywhere for quick editing
 
 ### In-Browser Category Editing
-- **WYSIWYG editor**: Edit category summary and description directly on the frontend
+- **WYSIWYG editor**: Edit category summary and description directly on the frontend using CKEditor5
 - **Live preview**: See changes in real-time before saving
 - **GraphQL integration**: Saves changes directly via DanDomain's API
+- **HTML preservation**: Maintains existing HTML structure, classes, and styling
+
+## Installation
+
+### For End Users (Simple Installation)
+
+1. **Download the pre-built extension**:
+   - Download `dandomain-storefront-editor.zip` from releases
+   - OR clone this repo and run `npm run package` to build it yourself
+
+2. **Install in Chrome**:
+   - Open Chrome and go to `chrome://extensions/`
+   - Enable "Developer mode" (toggle in top right)
+   - Click "Load unpacked" and select the `dist` folder (or extract the zip first)
+   - The extension is now installed and ready to use!
+
+### For Developers
+
+## Development
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm
+
+### Building the Extension
+
+The extension uses CKEditor5 with ES6 modules that need to be bundled:
+
+```bash
+# Install dependencies (first time only)
+npm install
+
+# Build the extension (creates complete dist/ folder)
+npm run build
+
+# Watch for changes during development
+npm run dev
+
+# Create a distributable zip file
+npm run package
+
+# Clean build artifacts
+npm run clean
+```
+
+### Build Output
+
+- **`dist/` folder**: Contains the complete, ready-to-install extension
+- **`dandomain-storefront-editor.zip`**: Distributable package for end users
+
+### Project Structure
+
+```
+├── src/category-editor.js     # Source code with ES6 imports
+├── dist/                      # Complete built extension (ready to install)
+│   ├── category-editor.js     # Bundled CKEditor5 (5.78 MB)
+│   ├── manifest.json          # Extension manifest
+│   ├── api.js, content.js     # Extension scripts
+│   ├── *.png                  # Icons
+│   └── _locales/              # Translations
+├── package.json               # npm dependencies and scripts
+├── webpack.config.js          # Build configuration
+└── scripts/package.js         # Packaging script
+```
+
+### CKEditor5 Configuration
+
+The editor includes DanDomain's complete configuration:
+- Full HTML support with `GeneralHtmlSupport`
+- Link decorators for new tab handling
+- Image handling and styling
+- Table support with column resizing
+- Heading configuration (H2-H4)
+- Rich text formatting (bold, italic, underline)
+- Lists and indentation
+- Media embedding
 
 ## API Integration
 

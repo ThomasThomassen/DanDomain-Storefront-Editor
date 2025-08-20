@@ -1,0 +1,102 @@
+.quick-edit-tooltip {
+  position: absolute;
+  background-color: #F87010;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  pointer-events: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.quick-edit-tooltip.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.quick-edit-content {
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: #F87010;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+}
+
+.quick-edit-content:hover {
+  background-color: #BF4A1D;
+  border-radius: 8px;
+}
+
+.quick-edit-arrow {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #F87010;
+  transition: border-top-color 0.2s ease-in-out;
+}
+
+.quick-edit-content:hover + .quick-edit-arrow {
+  border-top-color: #BF4A1D;
+}
+
+/* Fixed Storefront Editor Button for Product Pages */
+.quick-edit-fixed-button {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #F87010 0%, #BF4A1D 100%);
+  color: white;
+  border: none;
+  border-radius: 0 12px 12px 0;
+  padding: 12px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  cursor: pointer;
+  z-index: 10001;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(-50%) translateX(-100%);
+  min-width: 40px;
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+}
+
+.quick-edit-fixed-button.show {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.quick-edit-fixed-button:hover {
+  background: linear-gradient(135deg, #F87010 0%, #BF4A1D 100%);
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.25);
+  transform: translateY(-50%);
+}
+
+.quick-edit-fixed-button:active {
+  transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+  .quick-edit-fixed-button {
+    display: none; /* Hide on mobile to avoid interference */
+  }
+}

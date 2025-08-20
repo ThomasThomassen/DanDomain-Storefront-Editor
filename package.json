@@ -1,0 +1,42 @@
+{
+  "name": "dandomain-storefront-editor",
+  "version": "1.0.0",
+  "description": "A Chrome extension that enhances DanDomain webshops with quick edit functionality and in-browser content editing via the DanDomain GraphQL API.",
+  "main": "api.js",
+  "scripts": {
+    "build": "webpack",
+    "build:watch": "webpack --watch",
+    "package": "npm run build && node scripts/package.js",
+    "dev": "npm run build:watch",
+    "clean": "rimraf dist dandomain-storefront-editor.zip",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomasThomassen/DanDomain-Storefront-Editor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ThomasThomassen/DanDomain-Storefront-Editor/issues"
+  },
+  "homepage": "https://github.com/ThomasThomassen/DanDomain-Storefront-Editor#readme",
+  "dependencies": {
+    "ckeditor5": "^46.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "archiver": "^7.0.1",
+    "babel-loader": "^10.0.0",
+    "copy-webpack-plugin": "^13.0.1",
+    "css-loader": "^7.1.2",
+    "mini-css-extract-plugin": "^2.9.4",
+    "rimraf": "^6.0.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1"
+  }
+}

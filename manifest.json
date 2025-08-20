@@ -15,8 +15,8 @@
       "matches": [
         "<all_urls>"
       ],
-      "js": ["libs/quill/quill.js", "api.js", "category-editor.js", "content.js"],
-      "css": ["libs/quill/quill.snow.css", "styles.css"],
+      "js": ["category-editor.js", "api.js", "content.js"],
+      "css": ["ckeditor5-styles.css", "styles.css"],
       "run_at": "document_end"
     }
   ],

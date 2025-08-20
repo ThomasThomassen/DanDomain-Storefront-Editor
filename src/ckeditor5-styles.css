@@ -1,0 +1,89 @@
+/* CKEditor5 Theme and Base Styles */
+@import 'ckeditor5/ckeditor5.css';
+
+/* Custom CKEditor5 styling overrides for the extension */
+.ck-editor {
+  /* Ensure proper z-index for extension */
+  z-index: 10000;
+}
+
+.ck-toolbar {
+  /* Ensure toolbar is visible above page content */
+  z-index: 10001;
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.ck-content {
+  /* Preserve the styling from the original page elements */
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Ensure dropdown menus appear above everything */
+.ck-dropdown__panel {
+  z-index: 10002;
+}
+
+.ck-balloon-panel {
+  z-index: 10002;
+}
+
+/* Make sure the editor fits well within our container */
+#dd-category-editor-container-summary .ck-editor,
+#dd-category-editor-container-description .ck-editor {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Style the editor to match the extension's design */
+#dd-category-editor-container-summary .ck-editor__editable,
+#dd-category-editor-container-description .ck-editor__editable {
+  padding: 12px;
+  border: none;
+  border-radius: 0 0 4px 4px;
+}
+
+.ck-editor__editable {
+    max-height: auto;
+    height: auto;
+}
+
+/* Ensure original element classes take precedence over CKEditor defaults */
+.ck-editor__editable[class*=" "],
+.ck-editor__editable[class^=" "] {
+  /* Force inheritance of important styling properties */
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  text-align: inherit !important;
+}
+
+/* Preserve any custom styling from original elements */
+.ck-editor__editable * {
+  /* Allow content elements to inherit from their containers */
+  font-family: inherit;
+  line-height: inherit;
+}
+
+/* Strong background color override for CKEditor */
+.ck-editor__editable.ck-focused,
+.ck-editor__editable.ck-blurred,
+.ck-editor__editable {
+  /* Allow background to be overridden by more specific rules */
+  background: inherit !important;
+}
+
+/* Ensure background colors from original elements take precedence */
+#dd-category-editor-container-summary .ck-editor__editable,
+#dd-category-editor-container-description .ck-editor__editable {
+  /* Background will be set dynamically via JavaScript, but ensure it has high specificity */
+  background-color: inherit !important;
+  background-image: inherit !important;
+  background: inherit !important;
+}
+
+.ck, .ck-content, .editor__editable, .ck.ck-editor__main > .ck-editor__editable {
+    background-color: transparent;
+}

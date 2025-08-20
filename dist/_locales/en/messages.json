@@ -1,0 +1,114 @@
+{
+  "extensionName": {
+    "message": "DanDomain Storefront Editor",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Adds quick edit tooltips to product links on DanDomain webshops.",
+    "description": "Description of the extension"
+  },
+  "editProduct": {
+    "message": "Edit product",
+    "description": "Text on button to edit product"
+  },
+  "editCategory": {
+    "message": "Edit category",
+    "description": "Text on button to edit category"
+  },
+  "editPage": {
+    "message": "Edit page",
+    "description": "Text on button to edit page"
+  },
+  "editProductTooltip": {
+    "message": "Edit this product",
+    "description": "Tooltip text for product editing"
+  },
+  "editCategoryTooltip": {
+    "message": "Edit this category",
+    "description": "Tooltip text for category editing"
+  },
+  "editPageTooltip": {
+    "message": "Edit this page",
+    "description": "Tooltip text for page editing"
+  },
+  "settings": {
+    "message": "Settings",
+    "description": "Settings title"
+  },
+  "domainWhitelist": {
+    "message": "Domain restriction",
+    "description": "Label for domain whitelist setting"
+  },
+  "domainWhitelistDescription": {
+    "message": "Restrict the extension to only run on specific domains. Leave empty to run on all DanDomain shops.",
+    "description": "Description of domain whitelist functionality"
+  },
+  "domainPlaceholder": {
+    "message": "e.g: myshop.com",
+    "description": "Placeholder text for domain input"
+  },
+  "save": {
+    "message": "Save",
+    "description": "Save button text"
+  },
+  "saved": {
+    "message": "Saved!",
+    "description": "Confirmation message when settings are saved"
+  },
+  "addDomain": {
+    "message": "Add domain",
+    "description": "Add domain button text"
+  },
+  "removeDomain": {
+    "message": "Remove",
+    "description": "Remove domain button text"
+  },
+  "noDomains": {
+    "message": "No domains added. Extension will run on all DanDomain shops.",
+    "description": "Empty state message when no domains are whitelisted"
+  },
+  "invalidDomain": {
+    "message": "Please enter a valid domain (e.g: example.com)",
+    "description": "Error message for invalid domain format"
+  },
+  "duplicateDomain": {
+    "message": "This domain is already in the list",
+    "description": "Error message when trying to add duplicate domain"
+  },
+  "apiIntegration": {
+    "message": "API Integration",
+    "description": "API integration section title"
+  },
+  "shopId": {
+    "message": "Shop ID",
+    "description": "Shop ID field label"
+  },
+  "shopIdPlaceholder": {
+    "message": "e.g: shop12345",
+    "description": "Placeholder for shop ID input"
+  },
+  "clientId": {
+    "message": "API Client ID",
+    "description": "API Client ID field label"
+  },
+  "clientIdPlaceholder": {
+    "message": "Your API client ID",
+    "description": "Placeholder for client ID input"
+  },
+  "clientSecret": {
+    "message": "API Client Secret",
+    "description": "API Client Secret field label"
+  },
+  "clientSecretPlaceholder": {
+    "message": "Your API client secret",
+    "description": "Placeholder for client secret input"
+  },
+  "testConnection": {
+    "message": "Test Connection",
+    "description": "Test API connection button text"
+  },
+  "clearCredentials": {
+    "message": "Clear Credentials",
+    "description": "Clear API credentials button text"
+  }
+}
