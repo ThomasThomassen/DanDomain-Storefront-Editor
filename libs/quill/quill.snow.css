@@ -541,8 +541,5 @@
 .ql-snow .ql-tooltip[data-mode="video"]::before {
   content: "Enter video:";
 }
-.ql-snow a {
-  color: #06c;
-}
 
 /*# sourceMappingURL=quill.snow.css.map*/

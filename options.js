@@ -21,13 +21,14 @@ class MultiApiManager {
   }
 
   addConfig(config) {
+    config.id = this.apiConfigs.length ? Math.max(...this.apiConfigs.map(c => c.id)) + 1 : 1;
     config.name = config.name || `${config.shopId} (${config.shopId}.mywebshop.io)`;
     this.apiConfigs.push(config);
     return config;
   }
 
-  updateConfig(clientId, updates) {
-    const index = this.apiConfigs.findIndex(config => config.clientId === clientId);
+  updateConfig(id, updates) {
+    const index = this.apiConfigs.findIndex(config => config.id === id);
     if (index !== -1) {
       this.apiConfigs[index] = { ...this.apiConfigs[index], ...updates };
       return this.apiConfigs[index];
@@ -35,8 +36,8 @@ class MultiApiManager {
     return null;
   }
 
-  deleteConfig(clientId) {
-    const index = this.apiConfigs.findIndex(config => config.clientId === clientId);
+  deleteConfig(id) {
+    const index = this.apiConfigs.findIndex(config => config.id === id);
     if (index !== -1) {
       this.apiConfigs.splice(index, 1);
       return true;
@@ -124,7 +125,8 @@ let whitelist = [];
 // Create API configuration form
 function createApiConfigForm(config = null) {
   const isEdit = config !== null;
-  const configId = isEdit ? config.clientId : Date.now();
+  const configId = isEdit ? config.id : Date.now();
+  console.log(config);
   const formHtml = `
     <div class="api-config" data-config-id="${configId}">
       <div class="api-title">
@@ -199,9 +201,9 @@ async function renderApiConfigs() {
     configs.forEach(config => {
       if (config.shopId && config.clientId && config.clientSecret) {
         if (config.accessToken && config.tokenExpiry > Date.now()) {
-          showApiStatus(config.clientId, '✓ Connected (token valid)', 'connected');
+          showApiStatus(config.id, '✓ Connected (token valid)', 'connected');
         } else {
-          showApiStatus(config.clientId, 'Credentials saved (test connection to verify)', 'testing');
+          showApiStatus(config.id, 'Credentials saved (test connection to verify)', 'testing');
         }
       }
     });
@@ -245,15 +247,16 @@ async function saveApiConfig(configId) {
   };
   
   // Check if this is an update or new config
-  const existingConfig = apiManager.getAllConfigs().find(c => c.clientId == config.clientId);
+  const existingConfig = apiManager.getAllConfigs().find(c => c.id == configId);
   if (existingConfig) {
-    apiManager.updateConfig(config.clientId, config);
+    apiManager.updateConfig(parseInt(configId), config);
   } else {
+    config.id = parseInt(configId);
     apiManager.addConfig(config);
   }
   
   await apiManager.saveConfigs();
-  showApiStatus(config.clientId, '✓ Configuration saved', 'connected');
+  showApiStatus(configId, '✓ Configuration saved', 'connected');
 
   // Update the title
   const titleElement = document.querySelector(`[data-config-id="${configId}"] .api-title`);
@@ -295,7 +298,7 @@ async function testApiConnection(configId) {
       showApiStatus(configId, '✓ Connection successful!', 'connected');
       
       // Update the stored config with the token
-      const config = apiManager.getAllConfigs().find(c => c.clientId == configId);
+      const config = apiManager.getAllConfigs().find(c => c.id == configId);
       if (config) {
         apiManager.updateConfig(parseInt(configId), {
           accessToken: token.access_token,

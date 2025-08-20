@@ -135,6 +135,13 @@ class CategoryEditor {
       return null;
     }
 
+    // Store the complete HTML structure from GraphQL to compare against
+    const sourceHTML = tempDiv.innerHTML.trim();
+    
+    // Check if GraphQL response is a single wrapper element
+    const isCompleteWrapper = tempDiv.children.length === 1 && 
+                              tempDiv.children[0].outerHTML === sourceHTML;
+
     // Search for elements containing this text
     const walker = document.createTreeWalker(
       document.body,
@@ -164,6 +171,12 @@ class CategoryEditor {
       
       // Check if this element contains our text content
       if (nodeText.includes(textContent.trim())) {
+        // Skip elements that have the exact same HTML structure as the GraphQL source
+        if (node.innerHTML.trim() === sourceHTML) {
+          console.log('CategoryEditor: Skipping element with identical HTML structure:', node);
+          return;
+        }
+        
         // Check if any child elements also contain the text
         const childrenWithText = Array.from(node.children).filter(child => {
           const childText = child.textContent || child.innerText || '';
@@ -214,8 +227,9 @@ class CategoryEditor {
     });
     
     if (candidates.length > 0) {
-      console.log('Found element for content:', candidates[0]);
-      console.log('All candidates:', candidates.slice(0, 3)); // Log top 3 for debugging
+      if (isCompleteWrapper) {
+        return candidates[1].element;
+      }
       return candidates[0].element;
     }
 
@@ -271,6 +285,7 @@ class CategoryEditor {
     container.style.cssText = `
       border: 2px dashed white;
       border-radius: 10px;
+      margin: 5px 0;
     `;
 
     // Create header with edit button
@@ -398,9 +413,13 @@ class CategoryEditor {
       this.initializeQuillEditor(type, containers.quillContainer, containers.container);
     }
 
-    // Set content from original element
+    // Set content from original element with <br> preprocessing
     const originalContent = type === 'summary' ? this.originalSummary : this.originalDescription;
-    this.editors[type].root.innerHTML = originalContent;
+    
+    if (originalContent && originalContent.trim()) {
+      const processedContent = originalContent.replace(/<br\s*\/?>/gi, '\n');
+      this.editors[type].clipboard.dangerouslyPasteHTML(processedContent);
+    }
     
     // Clean up any empty paragraphs that might have been added
     setTimeout(() => {
@@ -413,37 +432,11 @@ class CategoryEditor {
 
   // Initialize Quill editor instance
   initializeQuillEditor(type, container, parentcontainer) {
-    // Register custom line break blot to preserve <br> tags
-    const Inline = Quill.import('blots/inline');
-    
-    class LineBreak extends Inline {
-      static create() {
-        return document.createElement('br');
-      }
-      
-      static formats() {
-        return true;
-      }
-      
-      format() {
-        // Line breaks don't have formats
-      }
-      
-      optimize() {
-        // Don't optimize line breaks
-      }
-    }
-    
-    LineBreak.blotName = 'break';
-    LineBreak.tagName = 'BR';
-    Quill.register(LineBreak);
-
     const toolbarOptions = [
       ['bold', 'italic', 'underline'],
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       [{ 'list': 'ordered'}, { 'list': 'bullet' }],
       ['link'],
-      ['linebreak'],
       ['clean']
     ];
 
@@ -458,26 +451,7 @@ class CategoryEditor {
         }
       },
       placeholder: `Edit ${type} content...`,
-      formats: ['bold', 'italic', 'underline', 'header', 'list', 'link', 'break']
-    });
-
-    // Add keyboard shortcut for line breaks (Shift+Enter)
-    this.editors[type].keyboard.addBinding({
-      key: 'Enter',
-      shiftKey: true
-    }, (range, context) => {
-      this.editors[type].insertEmbed(range.index, 'break', true, 'user');
-      this.editors[type].setSelection(range.index + 1, 'silent');
-    });
-
-    // Add custom line break button to toolbar
-    const quillToolbar = this.editors[type].getModule('toolbar');
-    quillToolbar.addHandler('linebreak', () => {
-      const range = this.editors[type].getSelection();
-      if (range) {
-        this.editors[type].insertEmbed(range.index, 'break', true, 'user');
-        this.editors[type].setSelection(range.index + 1, 'silent');
-      }
+      formats: ['bold', 'italic', 'underline', 'header', 'list', 'link']
     });
 
     // Customize Quill toolbar styling to match our design
@@ -490,16 +464,11 @@ class CategoryEditor {
         background: white;
       `;
       
-      // Add custom styling for the line break button
-      const linebreakBtn = toolbar.querySelector('.ql-linebreak');
-      if (linebreakBtn) {
-        linebreakBtn.innerHTML = '↵';
-        linebreakBtn.title = 'Insert line break (Shift+Enter)';
-      }
     }
 
     const editor = container.querySelector('.ql-editor');
     const originalElementClasses = this.originalElements[type].classList;
+    console.log(originalElementClasses);
     editor.classList.add(...originalElementClasses);
     
     // Clean up empty paragraphs that Quill adds
