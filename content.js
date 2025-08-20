@@ -4,6 +4,9 @@ let isInitialized = false;
 let isDanDomainShop = false;
 let domainWhitelist = [];
 
+// Global platform data that other scripts can access
+window.ddPlatformData = null;
+
 // Internationalization
 function getMessage(key, defaultValue = '') {
   return chrome.i18n?.getMessage(key) || defaultValue;
@@ -67,12 +70,30 @@ async function initializeDanDomainDetection() {
       // Initialize the extension for DanDomain shops
       isDanDomainShop = true;
       platformData = payload;
+      window.ddPlatformData = payload; // Make platform data globally available
       updateProductLinkRegex();
       
       if (!isInitialized) {
         initializeExtension();
       } else if (platformData.shopId) {
         enhanceLinks();
+      }
+
+      // Only initialize on category pages
+      if (payload.isCategoryPage) {
+        if (typeof categoryEditor !== 'undefined' && categoryEditor.setPlatformData && categoryEditor.initialize) {
+          categoryEditor.setPlatformData(payload);
+          setTimeout(() => {
+            categoryEditor.initialize();
+          }, 1000);
+        } else if (typeof window.categoryEditor !== 'undefined') {
+          window.categoryEditor.setPlatformData(payload);
+          setTimeout(() => {
+            window.categoryEditor.initialize();
+          }, 1000);
+        } else {
+          console.warn('CategoryEditor not available or missing methods');
+        }
       }
     }
   });

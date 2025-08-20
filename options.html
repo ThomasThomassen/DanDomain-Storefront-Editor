@@ -151,11 +151,192 @@
             color: #5f6368;
             font-style: italic;
         }
+
+        .api-config {
+            background: #f8f9ff;
+            border: 1px solid #e3e7ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .api-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a73e8;
+            margin-bottom: 16px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #3c4043;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 1px #1a73e8;
+        }
+
+        .form-group input[type="password"] {
+            font-family: monospace;
+        }
+
+        .api-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .api-status.connected {
+            background: #e8f5e8;
+            color: #137333;
+            border: 1px solid #ceead6;
+        }
+
+        .api-status.disconnected {
+            background: #fce8e6;
+            color: #d93025;
+            border: 1px solid #fce8e6;
+        }
+
+        .api-status.testing {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .test-btn {
+            background: #34a853;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .test-btn:hover {
+            background: #2d8f47;
+        }
+
+        .test-btn:disabled {
+            background: #9aa0a6;
+            cursor: not-allowed;
+        }
+
+        .clear-btn {
+            background: #ea4335;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .clear-btn:hover {
+            background: #d33b2c;
+        }
+
+        .add-api-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .add-api-btn:hover {
+            background: #1557b0;
+        }
+
+        .delete-btn {
+            background: #ea4335;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .delete-btn:hover {
+            background: #d33b2c;
+        }
+
+        .api-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .api-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .no-apis-message {
+            text-align: center;
+            padding: 32px 16px;
+            color: #5f6368;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 data-i18n="settings"></h1>
+        
+        <div class="setting-group">
+            <label data-i18n="apiIntegrations">API Integrations</label>
+            <div class="description" data-i18n="apiIntegrationsDescription">
+                Configure API credentials for different DanDomain shops. You can add multiple shop configurations.
+            </div>
+            
+            <button class="add-api-btn" id="addApiBtn">+ Add New API Integration</button>
+            
+            <div id="apiConfigsList">
+                <div class="no-apis-message" id="noApisMessage" style="display: none;">
+                    No API integrations configured. Click "Add New API Integration" to get started.
+                </div>
+            </div>
+        </div>
         
         <div class="setting-group">
             <label data-i18n="domainWhitelist"></label>

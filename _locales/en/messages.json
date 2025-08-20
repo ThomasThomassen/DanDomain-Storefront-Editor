@@ -74,5 +74,41 @@
   "duplicateDomain": {
     "message": "This domain is already in the list",
     "description": "Error message when trying to add duplicate domain"
+  },
+  "apiIntegration": {
+    "message": "API Integration",
+    "description": "API integration section title"
+  },
+  "shopId": {
+    "message": "Shop ID",
+    "description": "Shop ID field label"
+  },
+  "shopIdPlaceholder": {
+    "message": "e.g: shop12345",
+    "description": "Placeholder for shop ID input"
+  },
+  "clientId": {
+    "message": "API Client ID",
+    "description": "API Client ID field label"
+  },
+  "clientIdPlaceholder": {
+    "message": "Your API client ID",
+    "description": "Placeholder for client ID input"
+  },
+  "clientSecret": {
+    "message": "API Client Secret",
+    "description": "API Client Secret field label"
+  },
+  "clientSecretPlaceholder": {
+    "message": "Your API client secret",
+    "description": "Placeholder for client secret input"
+  },
+  "testConnection": {
+    "message": "Test Connection",
+    "description": "Test API connection button text"
+  },
+  "clearCredentials": {
+    "message": "Clear Credentials",
+    "description": "Clear API credentials button text"
   }
 }

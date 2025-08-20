@@ -74,5 +74,41 @@
   "duplicateDomain": {
     "message": "Dette domæne er allerede på listen",
     "description": "Fejlbesked når man forsøger at tilføje duplikat domæne"
+  },
+  "apiIntegration": {
+    "message": "API Integration",
+    "description": "API integration sektion titel"
+  },
+  "shopId": {
+    "message": "Shop ID",
+    "description": "Shop ID felt label"
+  },
+  "shopIdPlaceholder": {
+    "message": "f.eks: shop12345",
+    "description": "Placeholder for shop ID input"
+  },
+  "clientId": {
+    "message": "API Klient ID",
+    "description": "API Klient ID felt label"
+  },
+  "clientIdPlaceholder": {
+    "message": "Dit API klient ID",
+    "description": "Placeholder for klient ID input"
+  },
+  "clientSecret": {
+    "message": "API Klient Hemmelighed",
+    "description": "API Klient Hemmelighed felt label"
+  },
+  "clientSecretPlaceholder": {
+    "message": "Din API klient hemmelighed",
+    "description": "Placeholder for klient hemmelighed input"
+  },
+  "testConnection": {
+    "message": "Test Forbindelse",
+    "description": "Test API forbindelse knap tekst"
+  },
+  "clearCredentials": {
+    "message": "Ryd Legitimationsoplysninger",
+    "description": "Ryd API legitimationsoplysninger knap tekst"
   }
 }
