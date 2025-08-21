@@ -706,12 +706,6 @@ class CategoryEditor {
               ${backgroundCSS}
             }
             
-            /* Ensure content within the editor also inherits properly */
-            ${editorSelector} * {
-              font-family: inherit;
-              line-height: inherit;
-            }
-            
             /* Override CKEditor's default background with extreme specificity */
             ${editorSelectorGeneral}.ck-editor__editable.ck-focused,
             ${editorSelectorGeneral}.ck-editor__editable,
@@ -837,6 +831,7 @@ class CategoryEditor {
       variables.description = content;
     }
 
+    // This mutation currently removes the category image if there is one. (yikes)
     const mutation = `
       mutation UpdateCategoryTranslations(
         $categoryId: ID!
@@ -897,12 +892,6 @@ class CategoryEditor {
            currentDescription !== this.originalDescription;
   }
 
-  // Legacy save method (keeping for compatibility)
-  async saveChanges() {
-    // This method is now replaced by saveSpecificField for individual elements
-    console.warn('saveChanges() is deprecated. Use individual element saving instead.');
-  }
-
   // Revert changes
   revertChanges() {
     if (this.editors.summary) {
@@ -952,13 +941,8 @@ class CategoryEditor {
 // Initialize the category editor
 const categoryEditor = new CategoryEditor();
 
-// Make it globally accessible for debugging and content.js compatibility
-window.categoryEditor = categoryEditor;
-
-// Also expose the instance globally as 'categoryEditor' for content.js
 if (typeof window !== 'undefined') {
   window.categoryEditor = categoryEditor;
-  // Also expose at global scope for direct access
   window.CategoryEditor = CategoryEditor;
 }
 
