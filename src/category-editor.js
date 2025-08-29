@@ -12,10 +12,8 @@ import {
 	IndentBlock,
 	Link,
 	List,
-	MediaEmbed,
 	Paragraph,
 	PasteFromOffice,
-	TextTransformation,
 	GeneralHtmlSupport
 } from 'ckeditor5';
 
@@ -463,10 +461,8 @@ class CategoryEditor {
           IndentBlock,
           Link,
           List,
-          MediaEmbed,
           Paragraph,
           PasteFromOffice,
-          TextTransformation,
           GeneralHtmlSupport
         ],
         language: "en",
