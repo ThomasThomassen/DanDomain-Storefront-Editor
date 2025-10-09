@@ -125258,13 +125258,13 @@ const URL_REGEXP = /^(?:http(s)?:\/\/)?[\w-]+\.[\w-.~:/?#[\]@!$&'()*+,;=%]+$/;
 
 /**
  * The media embed UI plugin.
- */ class MediaEmbedUI extends dist_Plugin {
+ */ class MediaEmbedUI extends (/* unused pure expression or super */ null && (Plugin)) {
     /**
 	 * @inheritDoc
 	 */ static get requires() {
         return [
             MediaEmbedEditing,
-            dist_Dialog
+            Dialog
         ];
     }
     /**
@@ -125284,14 +125284,14 @@ const URL_REGEXP = /^(?:http(s)?:\/\/)?[\w-]+\.[\w-.~:/?#[\]@!$&'()*+,;=%]+$/;
         const editor = this.editor;
         editor.ui.componentFactory.add('mediaEmbed', ()=>{
             const t = this.editor.locale.t;
-            const button = this._createDialogButton(dist_ButtonView);
+            const button = this._createDialogButton(ButtonView);
             button.tooltip = true;
             button.label = t('Insert media');
             return button;
         });
         editor.ui.componentFactory.add('menuBar:mediaEmbed', ()=>{
             const t = this.editor.locale.t;
-            const button = this._createDialogButton(dist_MenuBarMenuListItemButtonView);
+            const button = this._createDialogButton(MenuBarMenuListItemButtonView);
             button.label = t('Media');
             return button;
         });
@@ -125303,7 +125303,7 @@ const URL_REGEXP = /^(?:http(s)?:\/\/)?[\w-]+\.[\w-.~:/?#[\]@!$&'()*+,;=%]+$/;
         const buttonView = new ButtonClass(editor.locale);
         const command = editor.commands.get('mediaEmbed');
         const dialogPlugin = this.editor.plugins.get('Dialog');
-        buttonView.icon = media;
+        buttonView.icon = IconMedia;
         buttonView.bind('isEnabled').to(command, 'isEnabled');
         buttonView.on('execute', ()=>{
             if (dialogPlugin.id === 'mediaEmbed') {
@@ -125322,7 +125322,7 @@ const URL_REGEXP = /^(?:http(s)?:\/\/)?[\w-]+\.[\w-.~:/?#[\]@!$&'()*+,;=%]+$/;
         const isMediaSelected = command.value !== undefined;
         if (!this._formView) {
             const registry = editor.plugins.get(MediaEmbedEditing).registry;
-            this._formView = new (dist_CssTransitionDisablerMixin(MediaFormView))(ckeditor5_media_embed_dist_getFormValidators(editor.t, registry), editor.locale);
+            this._formView = new (CssTransitionDisablerMixin(MediaFormView))(ckeditor5_media_embed_dist_getFormValidators(editor.t, registry), editor.locale);
             this._formView.on('submit', ()=>this._handleSubmitForm());
         }
         dialog.show({
@@ -125385,7 +125385,7 @@ function ckeditor5_media_embed_dist_getFormValidators(t, registry) {
  * * The {@link module:media-embed/mediaembedediting~MediaEmbedEditing media embed editing feature},
  * * The {@link module:media-embed/mediaembedui~MediaEmbedUI media embed UI feature} and
  * * The {@link module:media-embed/automediaembed~AutoMediaEmbed auto-media embed feature}.
- */ class MediaEmbed extends dist_Plugin {
+ */ class MediaEmbed extends (/* unused pure expression or super */ null && (Plugin)) {
     /**
 	 * @inheritDoc
 	 */ static get requires() {
@@ -125393,7 +125393,7 @@ function ckeditor5_media_embed_dist_getFormValidators(t, registry) {
             MediaEmbedEditing,
             MediaEmbedUI,
             AutoMediaEmbed,
-            dist_Widget
+            Widget
         ];
     }
     /**
@@ -147194,7 +147194,7 @@ class CategoryEditor {
       // Create CKEditor directly in the main container, not in the empty editorContainer
       const editor = await ClassicEditor.create(editorContainer, {
         licenseKey: LICENSE_KEY,
-        plugins: [Essentials, Autoformat, Bold, Italic, Underline, Heading, Indent, IndentBlock, Link, List, MediaEmbed, Paragraph, PasteFromOffice, TextTransformation, GeneralHtmlSupport],
+        plugins: [Essentials, Autoformat, Bold, Italic, Underline, Heading, Indent, IndentBlock, Link, List, Paragraph, PasteFromOffice, GeneralHtmlSupport],
         language: "en",
         link: {
           decorators: {

@@ -201,7 +201,7 @@ async function renderApiConfigs() {
     configs.forEach(config => {
       if (config.shopId && config.clientId && config.clientSecret) {
         if (config.accessToken && config.tokenExpiry > Date.now()) {
-          showApiStatus(config.id, '✓ Connected (token valid)', 'connected');
+          showApiStatus(config.id, '\u2713 Connected (token valid)', 'connected');
         } else {
           showApiStatus(config.id, 'Credentials saved (test connection to verify)', 'testing');
         }
@@ -256,7 +256,7 @@ async function saveApiConfig(configId) {
   }
   
   await apiManager.saveConfigs();
-  showApiStatus(configId, '✓ Configuration saved', 'connected');
+  showApiStatus(configId, '\u2713 Configuration saved', 'connected');
 
   // Update the title
   const titleElement = document.querySelector(`[data-config-id="${configId}"] .api-title`);
@@ -295,7 +295,7 @@ async function testApiConnection(configId) {
     const token = await getAccessToken(shopId, clientId, clientSecret);
     
     if (token) {
-      showApiStatus(configId, '✓ Connection successful!', 'connected');
+      showApiStatus(configId, '\u2713 Connection successful!', 'connected');
       
       // Update the stored config with the token
       const config = apiManager.getAllConfigs().find(c => c.id == configId);
@@ -307,11 +307,11 @@ async function testApiConnection(configId) {
         await apiManager.saveConfigs();
       }
     } else {
-      showApiStatus(configId, '✗ Authentication failed', 'disconnected');
+      showApiStatus(configId, '\u2717 Authentication failed', 'disconnected');
     }
   } catch (error) {
     console.error('API test error:', error);
-    showApiStatus(configId, `✗ Error: ${error.message}`, 'disconnected');
+    showApiStatus(configId, `\u2717 Error: ${error.message}`, 'disconnected');
   } finally {
     testBtn.disabled = false;
     testBtn.textContent = 'Test Connection';
@@ -544,5 +544,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
 

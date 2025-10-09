@@ -57,13 +57,13 @@ export default {
       patterns: [
         // Copy all extension files to dist
         { from: 'manifest.json', to: 'manifest.json' },
-        { from: 'api.js', to: 'api.js' },
-        { from: 'content.js', to: 'content.js' },
-        { from: 'background.js', to: 'background.js' },
-        { from: 'options.html', to: 'options.html' },
-        { from: 'options.js', to: 'options.js' },
-        { from: 'styles.css', to: 'styles.css' },
-        { from: 'web_accessible.js', to: 'web_accessible.js' },
+        { from: 'src/api.js', to: 'api.js' },
+        { from: 'src/content.js', to: 'content.js' },
+        { from: 'src/background.js', to: 'background.js' },
+        { from: 'src/options.html', to: 'options.html' },
+        { from: 'src/options.js', to: 'options.js' },
+        { from: 'src/styles.css', to: 'styles.css' },
+        { from: 'src/web_accessible.js', to: 'web_accessible.js' },
         { from: 'LICENSE', to: 'LICENSE' },
         { from: 'README.md', to: 'README.md' },
         
