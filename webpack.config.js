@@ -68,11 +68,11 @@ export default {
         { from: 'README.md', to: 'README.md' },
         
         // Copy icon files
-        { from: 'dd-16.png', to: 'dd-16.png' },
-        { from: 'dd-32.png', to: 'dd-32.png' },
-        { from: 'dd-48.png', to: 'dd-48.png' },
-        { from: 'dd-128.png', to: 'dd-128.png' },
-        { from: 'dd.svg', to: 'dd.svg' },
+        { from: 'assets/dd-16.png', to: 'dd-16.png' },
+        { from: 'assets/dd-32.png', to: 'dd-32.png' },
+        { from: 'assets/dd-48.png', to: 'dd-48.png' },
+        { from: 'assets/dd-128.png', to: 'dd-128.png' },
+        { from: 'assets/dd.svg', to: 'dd.svg' },
         
         // Copy localization files
         { from: '_locales', to: '_locales' }
