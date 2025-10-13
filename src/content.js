@@ -292,6 +292,27 @@ function showTooltip(element, shopId, editableId, editType = 'product') {
   tooltip.style.left = '0';
   tooltip.style.top = '0';
   tooltip.classList.add('show');
+
+  // on resize, reposition
+  window.removeEventListener('resize', resizeTooltip);
+  window.addEventListener('resize', resizeTooltip);
+
+}
+
+function resizeTooltip() {
+  if (!globalTooltip) return;
+  let finalLeft, finalTop;
+  if (currentActiveLink) {
+    const rect = currentActiveLink.getBoundingClientRect();
+    const centerX = rect.left + (rect.width / 2);
+    const topY = rect.top + window.scrollY - 45;
+    finalLeft = Math.max(10, Math.min(centerX, window.innerWidth - 120));
+    finalTop = Math.max(10, topY);
+  } else {
+    finalLeft = 0;
+    finalTop = 0;
+  }
+  globalTooltip.style.transform = `translate(${finalLeft}px, ${finalTop}px) translateX(-50%)`;
 }
 
 function hideTooltip() {
